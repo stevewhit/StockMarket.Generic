@@ -28,7 +28,11 @@ namespace StockMarket.DataModel
         public string Industry { get; set; }
         public string Website { get; set; }
         public string Description { get; set; }
+        public string CEO { get; set; }
+        public string SecurityName { get; set; }
+        public string IssueType { get; set; }
         public string Sector { get; set; }
+        public Nullable<int> NumEmployees { get; set; }
         public string Tags { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

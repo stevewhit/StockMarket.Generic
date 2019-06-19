@@ -1,84 +1,66 @@
 ﻿using StockMarket.DataModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StockMarket.Generic.Downloaders
 {
-    public interface IQuoteDownloader<T> : IDisposable where T : Quote
+    public interface IQuoteDownloader<Q> : IDisposable where Q : Quote
     {
         /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for a given <paramref name="tickerSymbol"/>.
+        /// Downloads and returns the last known quote for the given <paramref name="tickerSymbol"/>.
+        /// Note: This will not return the current day's quote until 4:00am the following day.
         /// </summary>
-        /// <param name="tickerSymbol">The ticker symbol of a company.</param>
-        /// <returns>Returns all available quotes for the identified company.</returns>
-        IEnumerable<T> DownloadQuotes(string tickerSymbol);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quote for.</param>
+        /// <returns>Returns the last known quote for the given <paramref name="tickerSymbol"/>.</returns>
+        Q DownloadPreviousDayQuote(string tickerSymbol);
 
         /// <summary>
-        /// Downloads daily End of Day (EOD) quotes for a given <paramref name="tickerSymbol"/> between and including the provided <paramref name="startDate"/> and the current date.
+        /// Downloads and returns quotes within the last 5 days for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="tickerSymbol">The ticker symbol of a company.</param>
-        /// <param name="startDate">The starting date of when to grab quotes for.</param>
-        /// <returns>Returns the quotes for the identified company between and including the <paramref name="startDate"/> and the current date.</returns>
-        IEnumerable<T> DownloadQuotes(string tickerSymbol, DateTime startDate);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 5 days for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesFiveDays(string tickerSymbol);
 
         /// <summary>
-        /// Downloads daily End of Day (EOD) quotes for a given <paramref name="tickerSymbol"/> between and including the provided <paramref name="startDate"/> and <paramref name="endDate"/>.
+        /// Downloads and returns quotes within the last 1 month for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="tickerSymbol">The ticker symbol of a company.</param>
-        /// <param name="startDate">The starting date of when to grab quotes for.</param>
-        /// <param name="endDate">The ending date of when to grab quotes for.</param>
-        /// <returns>Returns the quotes for the identified company between and including the <paramref name="startDate"/> and <paramref name="endDate"/>.</returns>
-        IEnumerable<T> DownloadQuotes(string tickerSymbol, DateTime startDate, DateTime endDate);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 1 month for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesOneMonth(string tickerSymbol);
 
         /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for the provided company.
+        /// Downloads and returns quotes within the last 3 months for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="companyId">The id of the company.</param>
-        /// <returns>Returns all available quotes for the identified company.</returns>
-        IEnumerable<T> DownloadQuotes(int companyId);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 3 month for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesThreeMonths(string tickerSymbol);
 
         /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for the provided company between and including the provided <paramref name="startDate"/> and the current date.
+        /// Downloads and returns quotes within the last 5 months for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="companyId">The id of the company.</param>
-        /// <param name="startDate">The starting date of when to grab quotes for.</param>
-        /// <returns>Returns the quotes for the identified company between and including the <paramref name="startDate"/> and the current date.</returns>
-        IEnumerable<T> DownloadQuotes(int companyId, DateTime startDate);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 5 month for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesFiveMonths(string tickerSymbol);
 
         /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for the provided company between and including the provided <paramref name="startDate"/> and <paramref name="endDate"/>.
+        /// Downloads and returns quotes within the last 1 year for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="companyId">The id of the company.</param>
-        /// <param name="startDate">The starting date of when to grab quotes for.</param>
-        /// <param name="endDate">The ending date of when to grab quotes for.</param>
-        /// <returns>Returns the quotes for the identified company between and including the <paramref name="startDate"/> and <paramref name="endDate"/>.</returns>
-        IEnumerable<T> DownloadQuotes(int companyId, DateTime startDate, DateTime endDate);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 1 year for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesOneYear(string tickerSymbol);
 
         /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for the provided company.
+        /// Downloads and returns quotes within the last 2 years for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="company">The company to download quotes for.</param>
-        /// <returns>Returns all available quotes for the identified company.</returns>
-        IEnumerable<T> DownloadQuotes(Company company);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 2 years for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesTwoYears(string tickerSymbol);
 
         /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for the provided company between and including the provided <paramref name="startDate"/> and the current date.
+        /// Downloads and returns quotes within the last 5 years for the company matching the <paramref name="tickerSymbol"/>.
         /// </summary>
-        /// <param name="company">The company to download quotes for.</param>
-        /// <param name="startDate">The starting date of when to grab quotes for.</param>
-        /// <returns>Returns the quotes for the identified company between and including the <paramref name="startDate"/> and the current date.</returns>
-        IEnumerable<T> DownloadQuotes(Company company, DateTime startDate);
-
-        /// <summary>
-        /// Downloads all available daily End of Day (EOD) quotes for the provided company between and including the provided <paramref name="startDate"/> and <paramref name="endDate"/>.
-        /// </summary>
-        /// <param name="company">The company to download quotes for.</param>
-        /// <param name="startDate">The starting date of when to grab quotes for.</param>
-        /// <param name="endDate">The ending date of when to grab quotes for.</param>
-        /// <returns>Returns the quotes for the identified company between and including the <paramref name="startDate"/> and <paramref name="endDate"/>.</returns>
-        IEnumerable<T> DownloadQuotes(Company company, DateTime startDate, DateTime endDate);
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns historical quotes within the last 5 years for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadQuotesFiveYears(string tickerSymbol);
     }
 }

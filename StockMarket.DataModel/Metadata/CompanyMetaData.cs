@@ -43,10 +43,22 @@ namespace StockMarket.DataModel
         
         [StringLength(255)]
         public string Description { get; set; }
-        
+
+        [StringLength(100)]
+        public string CEO { get; set; }
+
+        [StringLength(50)]
+        public string SecurityName { get; set; }
+
+        [StringLength(50)]
+        public string IssueType { get; set; }
+
         [StringLength(50)]
         public string Sector { get; set; }
-        
+
+        [Range(0, int.MaxValue)]
+        public int NumEmployees { get; set; }
+                
         [StringLength(1000)]
         public string Tags { get; set; }
 

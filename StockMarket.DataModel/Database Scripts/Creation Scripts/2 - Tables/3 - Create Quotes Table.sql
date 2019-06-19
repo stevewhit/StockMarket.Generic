@@ -6,11 +6,11 @@ BEGIN
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CompanyId] [int] NOT NULL,
 	[Date] [datetime] NOT NULL,
-	[Open] [decimal](10, 2) NULL,
+	[Open] [decimal](10, 2) NOT NULL,
+	[High] [decimal](10, 2) NOT NULL,
+	[Low] [decimal](10, 2) NOT NULL,
 	[Close] [decimal](10, 2) NOT NULL,
-	[High] [decimal](10, 2) NULL,
-	[Low] [decimal](10, 2) NULL,
-	[Volume] [bigint] NULL,
+	[Volume] [bigint] NOT NULL,
 	[LastModifiedDate] [datetime] NULL 
 	CONSTRAINT [PK_Quotes] PRIMARY KEY CLUSTERED 
 	(
