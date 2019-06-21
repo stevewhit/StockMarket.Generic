@@ -17,11 +17,11 @@ namespace StockMarket.DataModel
         public int Id { get; set; }
         public int CompanyId { get; set; }
         public System.DateTime Date { get; set; }
-        public Nullable<decimal> Open { get; set; }
+        public decimal Open { get; set; }
+        public decimal High { get; set; }
+        public decimal Low { get; set; }
         public decimal Close { get; set; }
-        public Nullable<decimal> High { get; set; }
-        public Nullable<decimal> Low { get; set; }
-        public Nullable<long> Volume { get; set; }
+        public long Volume { get; set; }
         public Nullable<System.DateTime> LastModifiedDate { get; set; }
     
         public virtual Company Company { get; set; }

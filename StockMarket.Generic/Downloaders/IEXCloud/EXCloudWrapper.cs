@@ -15,8 +15,8 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
     [ExcludeFromCodeCoverage]
     public class EXCloudWrapper : IEXCloudWrapper
     {
-        private const string _baseUrl = "https://cloud.iexapis.com/stable";
-        private const string _baseUrlTest = "https://sandbox.iexapis.com/stable";
+        private const string _baseUrlLive = "https://cloud.iexapis.com/stable";
+        private const string _baseUrl = "https://sandbox.iexapis.com/stable";
         private string _token;
         private bool _isDisposed = false;
 
@@ -161,7 +161,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
             if (_isDisposed)
                 throw new ObjectDisposedException("EXCloudWrapper", "The wrapper has been disposed.");
 
-            var url = $"{_baseUrlTest}/stock/{tickerSymbol}/company?token={_token}";
+            var url = $"{_baseUrl}/stock/{tickerSymbol}/company?token={_token}";
 
             return url.GetJsonFromUrl().FromJson<EXCompany>();
         }
@@ -177,7 +177,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
             if (_isDisposed)
                 throw new ObjectDisposedException("EXCloudWrapper", "The wrapper has been disposed.");
 
-            var url = $"{_baseUrlTest}/stock/{tickerSymbol}/previous?token={_token}";
+            var url = $"{_baseUrl}/stock/{tickerSymbol}/previous?token={_token}";
 
             return url.GetJsonFromUrl().FromJson<EXQuote>();
         }
@@ -263,7 +263,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
             if (_isDisposed)
                 throw new ObjectDisposedException("EXCloudWrapper", "The wrapper has been disposed.");
 
-            var url = $"{_baseUrlTest}/stock/{tickerSymbol}/chart/{quoteRange}?token={_token}";
+            var url = $"{_baseUrl}/stock/{tickerSymbol}/chart/{quoteRange}?token={_token}";
 
             return url.GetJsonFromUrl().FromJson<IList<EXQuote>>();
         }

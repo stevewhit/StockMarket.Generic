@@ -26,7 +26,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RetrieveQuotesFlag" Type="bit" Nullable="false" />
           <Property Name="Symbol" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Exchange" Type="nvarchar" MaxLength="20" />
           <Property Name="Industry" Type="nvarchar" MaxLength="25" />
           <Property Name="Website" Type="nvarchar" MaxLength="50" />
@@ -45,11 +45,11 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Open" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Open" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="High" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Low" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Close" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="High" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="Low" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="Volume" Type="bigint" />
+          <Property Name="Volume" Type="bigint" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_Quotes_Companys">
@@ -140,7 +140,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RetrieveQuotesFlag" Type="Boolean" Nullable="false" />
           <Property Name="Symbol" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Exchange" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Industry" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -160,11 +160,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Open" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Open" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="High" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Low" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Close" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="High" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="Low" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="Volume" Type="Int64" />
+          <Property Name="Volume" Type="Int64" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Company" Relationship="StockMarket.DataModel.FK_Quotes_Companys" FromRole="Quote" ToRole="Company" />
         </EntityType>
@@ -230,7 +230,7 @@
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="Industry" ColumnName="Industry" />
                 <ScalarProperty Name="Exchange" ColumnName="Exchange" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="Symbol" ColumnName="Symbol" />
                 <ScalarProperty Name="RetrieveQuotesFlag" ColumnName="RetrieveQuotesFlag" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -242,9 +242,9 @@
               <MappingFragment StoreEntitySet="Quotes">
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
                 <ScalarProperty Name="Low" ColumnName="Low" />
                 <ScalarProperty Name="High" ColumnName="High" />
-                <ScalarProperty Name="Close" ColumnName="Close" />
                 <ScalarProperty Name="Open" ColumnName="Open" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
@@ -252,7 +252,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
