@@ -48,8 +48,8 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.4.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Moq, Version=4.11.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\..\Quote-Retriever\packages\Moq.4.11.0\lib\net45\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.12.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\Quote-Retriever\packages\Moq.4.12.0\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -67,13 +67,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Quote-Retriever\QR.Business.Tests\QR.Business.Tests.csproj">
-      <Project>{832B7B64-EEF6-4417-B2B3-5BB17899BE95}</Project>
-      <Name>QR.Business.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StockMarket.DataModel.Test\StockMarket.DataModel.Test.csproj">
       <Project>{30505d26-76e1-4b68-b762-71b6a7b263d3}</Project>
       <Name>StockMarket.DataModel.Test</Name>

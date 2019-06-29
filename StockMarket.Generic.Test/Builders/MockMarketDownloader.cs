@@ -1,7 +1,6 @@
 ﻿using Moq;
 using System;
 using StockMarket.Generic.Downloaders;
-using QR.Business.Tests.Builders;
 using StockMarket.DataModel.Test.Builders;
 using System.Linq;
 
@@ -61,7 +60,7 @@ namespace StockMarket.Generic.Test.Builders
             Setup(w => w.DownloadQuotesOneMonth(It.IsAny<string>()))
                 .Returns((string tickerSymbol) =>
                 {
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 30);
+                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddMonths(-1)).TotalDays);
                 });
 
             return this;
@@ -72,7 +71,7 @@ namespace StockMarket.Generic.Test.Builders
             Setup(w => w.DownloadQuotesThreeMonths(It.IsAny<string>()))
                 .Returns((string tickerSymbol) =>
                 {
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 30*3);
+                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddMonths(-3)).TotalDays);
                 });
 
             return this;
@@ -83,7 +82,7 @@ namespace StockMarket.Generic.Test.Builders
             Setup(w => w.DownloadQuotesFiveMonths(It.IsAny<string>()))
                 .Returns((string tickerSymbol) =>
                 {
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 30*5);
+                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddMonths(-5)).TotalDays);
                 });
 
             return this;
@@ -94,7 +93,7 @@ namespace StockMarket.Generic.Test.Builders
             Setup(w => w.DownloadQuotesOneYear(It.IsAny<string>()))
                 .Returns((string tickerSymbol) =>
                 {
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 365);
+                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddYears(-1)).TotalDays);
                 });
 
             return this;
@@ -105,7 +104,7 @@ namespace StockMarket.Generic.Test.Builders
             Setup(w => w.DownloadQuotesTwoYears(It.IsAny<string>()))
                 .Returns((string tickerSymbol) =>
                 {
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 365*2);
+                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddYears(-2)).TotalDays);
                 });
 
             return this;
@@ -116,7 +115,7 @@ namespace StockMarket.Generic.Test.Builders
             Setup(w => w.DownloadQuotesFiveYears(It.IsAny<string>()))
                 .Returns((string tickerSymbol) =>
                 {
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 365*5);
+                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddYears(-5)).TotalDays);
                 });
 
             return this;

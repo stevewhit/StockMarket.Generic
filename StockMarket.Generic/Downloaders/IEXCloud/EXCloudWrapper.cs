@@ -34,7 +34,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns company details for the supplied <paramref name="tickerSymbol"/>.</returns>
         Company ICompanyDownloader<Company>.DownloadCompanyDetails(string tickerSymbol)
         {
-            return DownloadCompanyDetails(tickerSymbol);
+            return DownloadCompanyDetails(tickerSymbol).BaseCompany;
         }
 
         #endregion

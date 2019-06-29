@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using QR.Business.Tests.Builders;
 using StockMarket.Generic.Downloaders;
 using StockMarket.Generic.Test.Builders;
 using StockMarket.DataModel.Test.Builders;
@@ -98,9 +97,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == 30);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddMonths(-1)).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == 30);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddMonths(-1)).TotalDays);
         }
 
         #endregion
@@ -114,9 +113,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == 90);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddMonths(-3)).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == 90);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddMonths(-3)).TotalDays);
         }
 
         #endregion
@@ -130,9 +129,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == 150);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddMonths(-5)).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == 150);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddMonths(-5)).TotalDays);
         }
 
         #endregion
@@ -146,9 +145,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == 365);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddYears(-1)).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == 365);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddYears(-1)).TotalDays);
         }
 
         #endregion
@@ -162,9 +161,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == 365*2);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddYears(-2)).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == 365*2);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddYears(-2)).TotalDays);
         }
 
         #endregion
@@ -178,9 +177,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == 365*5);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddYears(-5)).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == 365*5);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddYears(-5)).TotalDays);
         }
 
         #endregion
