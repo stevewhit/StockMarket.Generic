@@ -1,12 +1,24 @@
-﻿using StockMarket.DataModel;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects
 {
     [ExcludeFromCodeCoverage]
-    public class EXCompany : Company
+    public class EXCompany
     {
-        public Company BaseCompany => base.Clone();
-        public int? Employees { get => NumEmployees; set => NumEmployees = value; }
+        public int Id { get; set; }
+        public string Symbol { get; set; }
+        public string CompanyName { get; set; }
+        public string Exchange { get; set; }
+        public string Industry { get; set; }
+        public string Website { get; set; }
+        public string Description { get; set; }
+        public string CEO { get; set; }
+        public string SecurityName { get; set; }
+        public string IssueType { get; set; }
+        public string Sector { get; set; }
+        public Nullable<int> NumEmployees { get; set; }
+        public string Tags { get; set; }
+        public int Employees { get; set; }
     }
 }

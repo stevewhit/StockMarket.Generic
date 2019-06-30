@@ -1,9 +1,11 @@
-﻿using ServiceStack;
+﻿using AutoMapper;
+using ServiceStack;
 using StockMarket.DataModel;
 using StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace StockMarket.Generic.Downloaders.IEXCloud
 {
@@ -19,10 +21,17 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         private const string _baseUrl = "https://sandbox.iexapis.com/stable";
         private string _token;
         private bool _isDisposed = false;
+        private IMapper _mapper;
 
         public EXCloudWrapper(string token)
         {
             _token = token;
+
+            _mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<EXCompany, Company>();
+                cfg.CreateMap<EXQuote, Quote>();
+            }).CreateMapper();
         }
 
         #region ICompanyDownloader<Company>
@@ -34,7 +43,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns company details for the supplied <paramref name="tickerSymbol"/>.</returns>
         Company ICompanyDownloader<Company>.DownloadCompanyDetails(string tickerSymbol)
         {
-            return DownloadCompanyDetails(tickerSymbol).BaseCompany;
+            return _mapper.Map<EXCompany, Company>(DownloadCompanyDetails(tickerSymbol));
         }
 
         #endregion
@@ -48,7 +57,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns the last known quote for the given <paramref name="tickerSymbol"/>.</returns>
         Quote IQuoteDownloader<Quote>.DownloadPreviousDayQuote(string tickerSymbol)
         {
-            return DownloadPreviousDayQuote(tickerSymbol);
+            return _mapper.Map<EXQuote, Quote>(DownloadPreviousDayQuote(tickerSymbol));
         }
 
         /// <summary>
@@ -58,7 +67,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 5 days for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesFiveDays(string tickerSymbol)
         {
-            return DownloadQuotesFiveDays(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesFiveDays(tickerSymbol));
         }
 
         /// <summary>
@@ -68,7 +77,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 1 month for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesOneMonth(string tickerSymbol)
         {
-            return DownloadQuotesOneMonth(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesOneMonth(tickerSymbol));
         }
 
         /// <summary>
@@ -78,7 +87,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 3 month for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesThreeMonths(string tickerSymbol)
         {
-            return DownloadQuotesThreeMonths(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesThreeMonths(tickerSymbol));
         }
 
         /// <summary>
@@ -88,7 +97,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 5 month for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesFiveMonths(string tickerSymbol)
         {
-            return DownloadQuotesFiveMonths(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesFiveMonths(tickerSymbol));
         }
 
         /// <summary>
@@ -98,7 +107,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 1 year for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesOneYear(string tickerSymbol)
         {
-            return DownloadQuotesOneYear(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesOneYear(tickerSymbol));
         }
 
         /// <summary>
@@ -108,7 +117,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 2 years for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesTwoYears(string tickerSymbol)
         {
-            return DownloadQuotesTwoYears(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesTwoYears(tickerSymbol));
         }
 
         /// <summary>
@@ -118,7 +127,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
         /// <returns>Returns historical quotes within the last 5 years for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Quote> IQuoteDownloader<Quote>.DownloadQuotesFiveYears(string tickerSymbol)
         {
-            return DownloadQuotesFiveYears(tickerSymbol);
+            return _mapper.Map<IEnumerable<EXQuote>, IEnumerable<Quote>>(DownloadQuotesFiveYears(tickerSymbol));
         }
 
         #endregion

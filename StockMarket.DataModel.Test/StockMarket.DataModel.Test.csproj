@@ -90,4 +90,5 @@
     <Error Condition="!Exists('..\..\Quote-Retriever\packages\MSTest.TestAdapter.1.4.0\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Quote-Retriever\packages\MSTest.TestAdapter.1.4.0\build\net45\MSTest.TestAdapter.targets'))" />
   </Target>
   <Import Project="..\..\Quote-Retriever\packages\MSTest.TestAdapter.1.4.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\..\Quote-Retriever\packages\MSTest.TestAdapter.1.4.0\build\net45\MSTest.TestAdapter.targets')" />
+  <Import Project="..\tools\Build-Cleanup-Targets.targets" />
 </Project>

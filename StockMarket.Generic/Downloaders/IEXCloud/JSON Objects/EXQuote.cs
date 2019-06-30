@@ -1,11 +1,18 @@
-﻿using StockMarket.DataModel;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects
 {
     [ExcludeFromCodeCoverage]
-    public class EXQuote : Quote
+    public class EXQuote
     {
+        public int Id { get; set; }
+        public int CompanyId { get; set; }
+        public System.DateTime Date { get; set; }
+        public decimal Open { get; set; }
+        public decimal High { get; set; }
+        public decimal Low { get; set; }
+        public decimal Close { get; set; }
+        public long Volume { get; set; }
         public float UHigh { get; set; }
         public float ULow { get; set; }
         public float UClose { get; set; }

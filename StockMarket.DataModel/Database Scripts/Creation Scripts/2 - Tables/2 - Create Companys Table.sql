@@ -4,19 +4,20 @@ BEGIN
 
 	CREATE TABLE [dbo].[Companys](
 		[Id] [int] IDENTITY(1,1) NOT NULL,
-		[RetrieveQuotesFlag] [bit] NOT NULL DEFAULT(1),
 		[Symbol] [nvarchar](20) NOT NULL,
-		[CompanyName] [nvarchar](50) NOT NULL,
-		[Exchange] [nvarchar](20) NULL,
-		[Industry] [nvarchar](25) NULL,
-		[Website] [nvarchar](50) NULL,
-		[Description] [nvarchar](255) NULL,
+		[CompanyName] [nvarchar](100) NULL,
+		[Exchange] [nvarchar](50) NULL,
+		[Industry] [nvarchar](100) NULL,
+		[Website] [nvarchar](100) NULL,
+		[Description] [nvarchar](2500) NULL,
 		[CEO] [nvarchar](100) NULL,
-		[SecurityName] [nvarchar](50) NULL,
+		[SecurityName] [nvarchar](100) NULL,
 		[IssueType] [nvarchar](50) NULL,
 		[Sector] [nvarchar](50) NULL,
 		[NumEmployees] int NULL,
-		[Tags] [nvarchar](1000) NULL,
+		[Tags] [nvarchar](2000) NULL,
+		[RetrieveQuotesFlag] [bit] NOT NULL DEFAULT(1),
+		[DownloadDetailsFlag] [bit] NOT NULL DEFAULT(1),
 	 CONSTRAINT [PK_Companys] PRIMARY KEY CLUSTERED 
 	(
 		[Id] ASC

@@ -21,7 +21,6 @@ namespace StockMarket.DataModel
         }
     
         public int Id { get; set; }
-        public bool RetrieveQuotesFlag { get; set; }
         public string Symbol { get; set; }
         public string CompanyName { get; set; }
         public string Exchange { get; set; }
@@ -34,6 +33,8 @@ namespace StockMarket.DataModel
         public string Sector { get; set; }
         public Nullable<int> NumEmployees { get; set; }
         public string Tags { get; set; }
+        public bool RetrieveQuotesFlag { get; set; }
+        public bool DownloadDetailsFlag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quote> Quotes { get; set; }

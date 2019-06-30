@@ -3,19 +3,41 @@ BEGIN
 	PRINT 'Inserting "AAPL" into "Companys" table..'
 
 	INSERT INTO [dbo].[Companys]
-			   ([RetrieveQuotesFlag]
-			   ,[Symbol]
-			   ,[Name]
-			   ,[Exchange]
-			   ,[Industry]
-			   ,[Website]
-			   ,[Description]
-			   ,[Sector]
-			   ,[Tags])
+			   ([Symbol]
+			   ,[RetrieveQuotesFlag]
+			   ,[DownloadDetailsFlag])
      	VALUES
-              (1, 'AAPL', 'Apple Inc.', 'NASDAQ', 'Technology', 'https://www.apple.com', 'Apple sells phone and computer products.', 'Technology', 'AAPL,Apple,Apple Inc.,OSX,iPhone')
+              ('AAPL', 1, 1)
 END
 ELSE
 	PRINT '"AAPL" already exists in the "Companys" table..'
 
 
+IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='GPRO')
+BEGIN
+	PRINT 'Inserting "GPRO" into "Companys" table..'
+
+	INSERT INTO [dbo].[Companys]
+			   ([Symbol]
+			   ,[RetrieveQuotesFlag]
+			   ,[DownloadDetailsFlag])
+     	VALUES
+              ('GPRO', 1, 1)
+END
+ELSE
+	PRINT '"GPRO" already exists in the "Companys" table..'
+
+
+IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='GOOG')
+BEGIN
+	PRINT 'Inserting "GOOG" into "Companys" table..'
+
+	INSERT INTO [dbo].[Companys]
+			   ([Symbol]
+			   ,[RetrieveQuotesFlag]
+			   ,[DownloadDetailsFlag])
+     	VALUES
+              ('GOOG', 1, 1)
+END
+ELSE
+	PRINT '"GOOG" already exists in the "Companys" table..'
