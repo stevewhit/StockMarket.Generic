@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
-using ServiceStack;
+using Newtonsoft.Json;
 using StockMarket.DataModel;
 using StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using System.Net;
 
 namespace StockMarket.Generic.Downloaders.IEXCloud
 {
     public interface IEXCloudWrapper : IMarketDownloader<Company, Quote>, IDisposable
     {
-        
+
     }
 
     [ExcludeFromCodeCoverage]
@@ -172,7 +172,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/company?token={_token}";
 
-            return url.GetJsonFromUrl().FromJson<EXCompany>();
+            return GetJsonFromUrl<EXCompany>(url);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/previous?token={_token}";
 
-            return url.GetJsonFromUrl().FromJson<EXQuote>();
+            return GetJsonFromUrl<EXQuote>(url);
         }
 
         /// <summary>
@@ -274,7 +274,23 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/chart/{quoteRange}?token={_token}";
 
-            return url.GetJsonFromUrl().FromJson<IList<EXQuote>>();
+            return GetJsonFromUrl<IEnumerable<EXQuote>>(url);
+        }
+
+        /// <summary>
+        /// Converts and returns the response Json object from the url provided. 
+        /// </summary>
+        /// <typeparam name="T">The generic type of object to return.</typeparam>
+        /// <param name="url">The url of the json string.</param>
+        /// <returns>Returns the converted Json object from the url.</returns>
+        private T GetJsonFromUrl<T>(string url)
+        {
+            using (var client = new WebClient())
+            {
+                var jsonResponse = client.DownloadString(url);
+
+                return JsonConvert.DeserializeObject<T>(jsonResponse);
+            }
         }
     }
 }

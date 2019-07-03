@@ -3,6 +3,9 @@ namespace StockMarket.DataModel.Test.Builders
 {
     public static class FakeCompaniesBuilder
     {
+        // PLEASE NOTE: In order for the market downloader to work, remember to add each
+        // company to the MockMarketDownloader class in StockMarket.Generic.Test.Builders
+
         public static TestCompany CreateFakeCompanyAAPL()
         {
             return new TestCompany()
@@ -43,6 +46,15 @@ namespace StockMarket.DataModel.Test.Builders
             };
         }
 
+        public static TestCompany CreateFakeCompanyGOOGIncomplete()
+        {
+            return new TestCompany()
+            {
+                Id = 333,
+                Symbol = "GOOG"
+            };
+        }
+
         public static TestCompany CreateFakeCompanyGOOG()
         {
             return new TestCompany()
@@ -60,6 +72,35 @@ namespace StockMarket.DataModel.Test.Builders
                 Sector = "Electronic Technology",
                 NumEmployees = 132000,
                 Tags = "GOOG, Alphabet..."
+            };
+        }
+
+        public static TestCompany CreateFakeCompanyAMZNIncomplete()
+        {
+            return new TestCompany()
+            {
+                Id = 444,
+                Symbol = "AMZN"
+            };
+        }
+
+        public static TestCompany CreateFakeCompanyAMZN()
+        {
+            return new TestCompany()
+            {
+                Id = 444,
+                Symbol = "AMZN",
+                CompanyName = "Amazon",
+                Exchange = "NASDAQ",
+                Industry = "Telecommunications Equipment..",
+                Website = "https://www.amazon.com",
+                Description = "Amazon gengages in the ...",
+                CEO = "Tim Cook",
+                SecurityName = "Amazon",
+                IssueType = "cs",
+                Sector = "Electronic Technology",
+                NumEmployees = 132000,
+                Tags = "Amazon, AMZN..."
             };
         }
     }

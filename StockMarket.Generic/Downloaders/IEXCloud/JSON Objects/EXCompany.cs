@@ -17,8 +17,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects
         public string SecurityName { get; set; }
         public string IssueType { get; set; }
         public string Sector { get; set; }
-        public Nullable<int> NumEmployees { get; set; }
+        public Nullable<int> Employees { get; set; }
         public string Tags { get; set; }
-        public int Employees { get; set; }
     }
 }
