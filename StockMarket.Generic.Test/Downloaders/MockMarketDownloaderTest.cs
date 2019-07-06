@@ -18,12 +18,14 @@ namespace StockMarket.Generic.Test.Downloaders
     {
         private MockMarketDownloader _mockDownloader;
         private IMarketDownloader<TestCompany, TestQuote> _downloader;
+        private TestCompany _fakeCompany;
 
         [TestInitialize]
         public void Initialize()
         {
             _mockDownloader = new MockMarketDownloader();
             _downloader = _mockDownloader.Object;
+            _fakeCompany = FakeCompaniesBuilder.CreateFakeCompanyAAPL();
         }
 
         [TestCleanup]
@@ -60,10 +62,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadPreviousDayQuote()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadPreviousDayQuote_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadPreviousDayQuote(null);
+        }
+
+        [TestMethod]
         public void DownloadPreviousDayQuote_ReturnsYesterdaysQuote()
         {
             // Act
-            var downloadedQuote = _downloader.DownloadPreviousDayQuote(null);
+            var downloadedQuote = _downloader.DownloadPreviousDayQuote(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuote);
@@ -74,10 +84,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesFiveDays()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesFiveDays_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesFiveDays(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesFiveDays_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesFiveDays(null);
+            var downloadedQuotes = _downloader.DownloadQuotesFiveDays(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
@@ -90,10 +108,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesOneMonth()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesOneMonth_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesOneMonth(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesOneMonth_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesOneMonth(null);
+            var downloadedQuotes = _downloader.DownloadQuotesOneMonth(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
@@ -106,10 +132,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesThreeMonths()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesThreeMonths_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesThreeMonths(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesThreeMonths_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesThreeMonths(null);
+            var downloadedQuotes = _downloader.DownloadQuotesThreeMonths(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
@@ -122,10 +156,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesFiveMonths()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesFiveMonths_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesFiveMonths(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesFiveMonths_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesFiveMonths(null);
+            var downloadedQuotes = _downloader.DownloadQuotesFiveMonths(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
@@ -138,10 +180,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesOneYear()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesOneYear_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesOneYear(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesOneYear_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesOneYear(null);
+            var downloadedQuotes = _downloader.DownloadQuotesOneYear(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
@@ -154,10 +204,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesTwoYears()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesTwoYears_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesTwoYears(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesTwoYears_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesTwoYears(null);
+            var downloadedQuotes = _downloader.DownloadQuotesTwoYears(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
@@ -170,10 +228,18 @@ namespace StockMarket.Generic.Test.Downloaders
         #region Testing MockMarketDownloader SetupDownloadQuotesFiveYears()
 
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void DownloadQuotesFiveYears_WithInvalidSymbol_ThrowsException()
+        {
+            // Act
+            _downloader.DownloadQuotesFiveYears(null);
+        }
+
+        [TestMethod]
         public void DownloadQuotesFiveYears_ReturnsQuotes()
         {
             // Act
-            var downloadedQuotes = _downloader.DownloadQuotesFiveYears(null);
+            var downloadedQuotes = _downloader.DownloadQuotesFiveYears(_fakeCompany.Symbol);
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);

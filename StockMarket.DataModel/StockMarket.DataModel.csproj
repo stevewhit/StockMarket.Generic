@@ -61,8 +61,6 @@
     <Compile Include="Company.cs">
       <DependentUpon>SMAContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Metadata\CompanyMetaData.cs" />
-    <Compile Include="Metadata\QuoteMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quote.cs">
       <DependentUpon>SMAContext.tt</DependentUpon>
