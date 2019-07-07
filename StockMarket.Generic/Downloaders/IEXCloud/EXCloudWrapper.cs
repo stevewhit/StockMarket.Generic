@@ -29,7 +29,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             _mapper = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<EXCompany, Company>();
+                cfg.CreateMap<EXCompany, Company>().ForMember(dest => dest.NumEmployees, opt => opt.MapFrom(src => src.Employees)).ForMember(dest => dest.Tags, opt => opt.MapFrom(src => string.Join(",", src.Tags)));
                 cfg.CreateMap<EXQuote, Quote>();
             }).CreateMapper();
         }

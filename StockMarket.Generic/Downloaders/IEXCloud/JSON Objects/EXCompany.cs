@@ -18,6 +18,6 @@ namespace StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects
         public string IssueType { get; set; }
         public string Sector { get; set; }
         public Nullable<int> Employees { get; set; }
-        public string Tags { get; set; }
+        public string[] Tags { get; set; }
     }
 }
