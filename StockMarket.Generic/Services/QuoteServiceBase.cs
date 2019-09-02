@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace StockMarket.Generic.Services
 {
-    public interface IQuoteService<T> : IDisposable where T : Quote
+    public interface IQuoteServiceBase<T> : IDisposable where T : Quote
     {
         /// <summary>
         /// Returns quotes stored in the repository.
@@ -53,12 +53,12 @@ namespace StockMarket.Generic.Services
         void Delete(T quote);
     }
 
-    public class QuoteService<T> : IQuoteService<T> where T : Quote
+    public abstract class QuoteServiceBase<T> : IQuoteServiceBase<T> where T : Quote
     {
-        private readonly IEfRepository<T> _repository;
-        private bool _isDisposed = false;
+        protected readonly IEfRepository<T> _repository;
+        protected bool _isDisposed = false;
 
-        public QuoteService(IEfRepository<T> repository)
+        public QuoteServiceBase(IEfRepository<T> repository)
         {
             _repository = repository ?? throw new ArgumentNullException("repository");
         }

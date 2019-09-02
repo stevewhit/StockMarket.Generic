@@ -44,6 +44,7 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.4.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -59,14 +60,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\MockMarketDownloader.cs" />
+    <Compile Include="Builders\Objects\ConcreteCompanyService.cs" />
+    <Compile Include="Builders\Objects\ConcreteQuoteService.cs" />
     <Compile Include="Downloaders\MockMarketDownloaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CompanyServiceBaseTest.cs" />
+    <Compile Include="Services\QuoteServiceBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework.Generic\Framework.Generic.Tests\Framework.Generic.Tests.csproj">
+      <Project>{78DD3503-2D8E-492B-93D5-771C68ED5A63}</Project>
+      <Name>Framework.Generic.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework.Generic\Framework.Generic\Framework.Generic.csproj">
+      <Project>{90236CE3-7B97-457A-8BC2-9ACAED973488}</Project>
+      <Name>Framework.Generic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockMarket.DataModel.Test\StockMarket.DataModel.Test.csproj">
       <Project>{30505d26-76e1-4b68-b762-71b6a7b263d3}</Project>
       <Name>StockMarket.DataModel.Test</Name>
