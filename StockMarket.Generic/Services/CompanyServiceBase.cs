@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace StockMarket.Generic.Services
 {
-    public interface IBaseCompanyService<T> : IDisposable where T : Company
+    public interface ICompanyServiceBase<T> : IDisposable where T : Company
     {
         /// <summary>
         /// Returns stored companies.
@@ -46,12 +46,12 @@ namespace StockMarket.Generic.Services
         void Delete(T company);
     }
 
-    public abstract class BaseCompanyService<T> : IBaseCompanyService<T> where T : Company
+    public abstract class CompanyServiceBase<T> : ICompanyServiceBase<T> where T : Company
     {
         protected readonly IEfRepository<T> _repository;
         protected bool _isDisposed = false;
 
-        public BaseCompanyService(IEfRepository<T> repository)
+        public CompanyServiceBase(IEfRepository<T> repository)
         {
             _repository = repository ?? throw new ArgumentNullException("repository");
         }
