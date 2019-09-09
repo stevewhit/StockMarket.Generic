@@ -5,6 +5,7 @@ using StockMarket.DataModel.Test.Builders;
 using System;
 using System.Linq;
 using System.Diagnostics.CodeAnalysis;
+using StockMarket.DataModel.Test.Builders.Objects;
 
 namespace StockMarket.Generic.Test.Downloaders
 {

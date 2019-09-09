@@ -1,4 +1,5 @@
 ﻿using Framework.Generic.Utility;
+using StockMarket.DataModel.Test.Builders.Objects;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;

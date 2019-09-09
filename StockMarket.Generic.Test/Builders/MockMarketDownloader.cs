@@ -3,6 +3,7 @@ using System;
 using StockMarket.Generic.Downloaders;
 using StockMarket.DataModel.Test.Builders;
 using System.Linq;
+using StockMarket.DataModel.Test.Builders.Objects;
 
 namespace StockMarket.Generic.Test.Builders
 {

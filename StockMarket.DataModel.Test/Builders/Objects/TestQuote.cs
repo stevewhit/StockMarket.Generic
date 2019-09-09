@@ -3,10 +3,10 @@ using System;
 using System.Data.Entity;
 using System.Diagnostics.CodeAnalysis;
 
-namespace StockMarket.DataModel.Test.Builders
+namespace StockMarket.DataModel.Test.Builders.Objects
 {
     [ExcludeFromCodeCoverage]
-    public class TestCompany : Company, ITestEntity
+    public class TestQuote : Quote, ITestEntity
     {
         public Guid TestId { get; private set; }
         public int StoredValue { get; set; }
@@ -14,15 +14,15 @@ namespace StockMarket.DataModel.Test.Builders
         public EntityState State { get; set; }
         public bool IsVirtual { get; set; }
 
-        public TestCompany() : this(0, false) { }
-        public TestCompany(bool isVirtual = false)
+        public TestQuote() : this(0, false) { }
+        public TestQuote(bool isVirtual = false)
         {
             TestId = Guid.NewGuid();
             State = EntityState.Unchanged;
             IsVirtual = isVirtual;
         }
 
-        public TestCompany(int value, bool isVirtual = false) : this(isVirtual)
+        public TestQuote(int value, bool isVirtual = false) : this(isVirtual)
         {
             StoredValue = value;
             CurrentValue = value;

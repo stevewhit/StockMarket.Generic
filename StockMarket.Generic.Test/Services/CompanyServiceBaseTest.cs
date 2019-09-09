@@ -4,8 +4,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 using System;
 using System.Linq;
-using StockMarket.DataModel.Test.Builders;
 using StockMarket.Generic.Test.Builders.Objects;
+using StockMarket.DataModel.Test.Builders.Objects;
 
 namespace StockMarket.Generic.Test.Services
 {

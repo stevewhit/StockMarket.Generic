@@ -1,4 +1,6 @@
 ﻿
+using StockMarket.DataModel.Test.Builders.Objects;
+
 namespace StockMarket.DataModel.Test.Builders
 {
     public static class FakeCompaniesBuilder

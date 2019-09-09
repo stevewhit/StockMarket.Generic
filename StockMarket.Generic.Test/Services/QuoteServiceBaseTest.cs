@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using StockMarket.Generic.Test.Builders.Objects;
+using StockMarket.DataModel.Test.Builders.Objects;
 
 namespace StockMarket.Generic.Test.Services
 {
