@@ -23,12 +23,6 @@ namespace StockMarket.Generic.Test.Builders
             {
                 case "AAPL":
                     return FakeCompaniesBuilder.CreateFakeCompanyAAPL();
-                case "GPRO":
-                    return FakeCompaniesBuilder.CreateFakeCompanyGPRO();
-                case "GOOG":
-                    return FakeCompaniesBuilder.CreateFakeCompanyGOOG();
-                case "AMZN":
-                    return FakeCompaniesBuilder.CreateFakeCompanyAMZN();
                 default:
                     throw new NotImplementedException("No fake data exists yet for this company.");
             }
