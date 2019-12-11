@@ -4,7 +4,7 @@ BEGIN
 
 	CREATE TABLE [dbo].[Companys](
 		[Id] [int] IDENTITY(1,1) NOT NULL,
-		[Symbol] [nvarchar](20) NOT NULL,
+		[Symbol] [nvarchar](20) NOT NULL UNIQUE,
 		[CompanyName] [nvarchar](100) NULL,
 		[Exchange] [nvarchar](50) NULL,
 		[Industry] [nvarchar](100) NULL,

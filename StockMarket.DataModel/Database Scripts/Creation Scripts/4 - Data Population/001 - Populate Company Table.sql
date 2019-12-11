@@ -7,7 +7,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('AAPL', 1, 1)
+              ('AAPL', 0, 1)
 END
 ELSE
 	PRINT '"AAPL" already exists in the "Companys" table..'
@@ -22,7 +22,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('GPRO', 1, 1)
+              ('GPRO', 0, 1)
 END
 ELSE
 	PRINT '"GPRO" already exists in the "Companys" table..'
@@ -37,7 +37,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('GOOG', 1, 1)
+              ('GOOG', 0, 1)
 END
 ELSE
 	PRINT '"GOOG" already exists in the "Companys" table..'
@@ -52,7 +52,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('FB', 1, 1)
+              ('FB', 0, 1)
 END
 ELSE
 	PRINT '"FB" already exists in the "Companys" table..'
@@ -66,7 +66,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('GE', 1, 1)
+              ('GE', 0, 1)
 END
 ELSE
 	PRINT '"GE" already exists in the "Companys" table..'
@@ -80,7 +80,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('F', 1, 1)
+              ('F', 0, 1)
 END
 ELSE
 	PRINT '"F" already exists in the "Companys" table..'
@@ -94,7 +94,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('HPE', 1, 1)
+              ('HPE', 0, 1)
 END
 ELSE
 	PRINT '"HPE" already exists in the "Companys" table..'
@@ -108,7 +108,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('UAA', 1, 1)
+              ('UAA', 0, 1)
 END
 ELSE
 	PRINT '"UAA" already exists in the "Companys" table..'
@@ -122,7 +122,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('GPS', 1, 1)
+              ('GPS', 0, 1)
 END
 ELSE
 	PRINT '"GPS" already exists in the "Companys" table..'
@@ -136,7 +136,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('WU', 1, 1)
+              ('WU', 0, 1)
 END
 ELSE
 	PRINT '"WU" already exists in the "Companys" table..'
@@ -150,7 +150,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('AAL', 1, 1)
+              ('AAL', 0, 1)
 END
 ELSE
 	PRINT '"AAL" already exists in the "Companys" table..'
@@ -164,7 +164,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('BAC', 1, 1)
+              ('BAC', 0, 1)
 END
 ELSE
 	PRINT '"BAC" already exists in the "Companys" table..'
@@ -178,7 +178,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('HRB', 1, 1)
+              ('HRB', 0, 1)
 END
 ELSE
 	PRINT '"HRB" already exists in the "Companys" table..'
@@ -192,7 +192,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('T', 1, 1)
+              ('T', 0, 1)
 END
 ELSE
 	PRINT '"T" already exists in the "Companys" table..'
@@ -206,7 +206,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('GM', 1, 1)
+              ('GM', 0, 1)
 END
 ELSE
 	PRINT '"GM" already exists in the "Companys" table..'
@@ -220,7 +220,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('INTC', 1, 1)
+              ('INTC', 0, 1)
 END
 ELSE
 	PRINT '"INTC" already exists in the "Companys" table..'
@@ -234,7 +234,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('WFC', 1, 1)
+              ('WFC', 0, 1)
 END
 ELSE
 	PRINT '"WFC" already exists in the "Companys" table..'
@@ -248,7 +248,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('MS', 1, 1)
+              ('MS', 0, 1)
 END
 ELSE
 	PRINT '"MS" already exists in the "Companys" table..'
@@ -262,7 +262,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('KO', 1, 1)
+              ('KO', 0, 1)
 END
 ELSE
 	PRINT '"KO" already exists in the "Companys" table..'
@@ -276,7 +276,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('JNJ', 1, 1)
+              ('JNJ', 0, 1)
 END
 ELSE
 	PRINT '"JNJ" already exists in the "Companys" table..'
@@ -290,7 +290,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('ORCL', 1, 1)
+              ('ORCL', 0, 1)
 END
 ELSE
 	PRINT '"ORCL" already exists in the "Companys" table..'
@@ -304,7 +304,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('V', 1, 1)
+              ('V', 0, 1)
 END
 ELSE
 	PRINT '"V" already exists in the "Companys" table..'
@@ -318,7 +318,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('SBUX', 1, 1)
+              ('SBUX', 0, 1)
 END
 ELSE
 	PRINT '"SBUX" already exists in the "Companys" table..'
@@ -332,7 +332,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('KR', 1, 1)
+              ('KR', 0, 1)
 END
 ELSE
 	PRINT '"KR" already exists in the "Companys" table..'
@@ -346,7 +346,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('CVS', 1, 1)
+              ('CVS', 0, 1)
 END
 ELSE
 	PRINT '"CVS" already exists in the "Companys" table..'
@@ -360,7 +360,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('LOW', 1, 1)
+              ('LOW', 0, 1)
 END
 ELSE
 	PRINT '"LOW" already exists in the "Companys" table..'
@@ -374,7 +374,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('NKE', 1, 1)
+              ('NKE', 0, 1)
 END
 ELSE
 	PRINT '"NKE" already exists in the "Companys" table..'
@@ -388,7 +388,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('CTL', 1, 1)
+              ('CTL', 0, 1)
 END
 ELSE
 	PRINT '"CTL" already exists in the "Companys" table..'
@@ -402,7 +402,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('ADBE', 1, 1)
+              ('ADBE', 0, 1)
 END
 ELSE
 	PRINT '"ADBE" already exists in the "Companys" table..'
@@ -416,7 +416,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('DIS', 1, 1)
+              ('DIS', 0, 1)
 END
 ELSE
 	PRINT '"DIS" already exists in the "Companys" table..'
@@ -430,7 +430,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('TIF', 1, 1)
+              ('TIF', 0, 1)
 END
 ELSE
 	PRINT '"TIF" already exists in the "Companys" table..'
@@ -444,7 +444,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('EBAY', 1, 1)
+              ('EBAY', 0, 1)
 END
 ELSE
 	PRINT '"EBAY" already exists in the "Companys" table..'
@@ -458,7 +458,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('TSN', 1, 1)
+              ('TSN', 0, 1)
 END
 ELSE
 	PRINT '"TSN" already exists in the "Companys" table..'
@@ -472,7 +472,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('PEGI', 1, 1)
+              ('PEGI', 0, 1)
 END
 ELSE
 	PRINT '"PEGI" already exists in the "Companys" table..'
@@ -486,7 +486,7 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('SHAK', 1, 1)
+              ('SHAK', 0, 1)
 END
 ELSE
 	PRINT '"SHAK" already exists in the "Companys" table..'
@@ -500,21 +500,35 @@ BEGIN
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('NVDA', 1, 1)
+              ('NVDA', 0, 1)
 END
 ELSE
 	PRINT '"NVDA" already exists in the "Companys" table..'
 
 IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='WMT')
 BEGIN
-	PRINT 'Inserting "NVDA" into "WMT" table..'
+	PRINT 'Inserting "NVDA" into "Companys" table..'
 
 	INSERT INTO [dbo].[Companys]
 			   ([Symbol]
 			   ,[RetrieveQuotesFlag]
 			   ,[DownloadDetailsFlag])
      	VALUES
-              ('WMT', 1, 1)
+              ('WMT', 0, 1)
 END
 ELSE
 	PRINT '"WMT" already exists in the "Companys" table..'
+	
+IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='ROKU')
+BEGIN
+	PRINT 'Inserting "ROKU" into "Companys" table..'
+
+	INSERT INTO [dbo].[Companys]
+			   ([Symbol]
+			   ,[RetrieveQuotesFlag]
+			   ,[DownloadDetailsFlag])
+     	VALUES
+              ('ROKU', 1, 1)
+END
+ELSE
+	PRINT '"ROKU" already exists in the "Companys" table..'
