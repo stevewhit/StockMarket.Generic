@@ -45,6 +45,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Open" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="High" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -52,6 +53,13 @@
           <Property Name="Close" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Volume" Type="bigint" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QuoteTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <Association Name="FK_Quotes_Companys">
           <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
@@ -62,6 +70,18 @@
             </Principal>
             <Dependent Role="Quotes">
               <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quotes_QuoteTypes">
+          <End Role="QuoteTypes" Type="Self.QuoteTypes" Multiplicity="1" />
+          <End Role="Quotes" Type="Self.Quotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuoteTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quotes">
+              <PropertyRef Name="TypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -80,8 +100,13 @@
           <EntitySet Name="ApplicationLogs" EntityType="Self.ApplicationLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companys" EntityType="Self.Companys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quotes" EntityType="Self.Quotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteTypes" EntityType="Self.QuoteTypes" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Quotes_Companys" Association="Self.FK_Quotes_Companys">
             <End Role="Companys" EntitySet="Companys" />
+            <End Role="Quotes" EntitySet="Quotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotes_QuoteTypes" Association="Self.FK_Quotes_QuoteTypes">
+            <End Role="QuoteTypes" EntitySet="QuoteTypes" />
             <End Role="Quotes" EntitySet="Quotes" />
           </AssociationSet>
         </EntityContainer>
@@ -104,8 +129,13 @@
           <EntitySet Name="ApplicationLogs" EntityType="StockMarket.DataModel.ApplicationLog" />
           <EntitySet Name="Companys" EntityType="StockMarket.DataModel.Company" />
           <EntitySet Name="Quotes" EntityType="StockMarket.DataModel.Quote" />
+          <EntitySet Name="QuoteTypes" EntityType="StockMarket.DataModel.QuoteType" />
           <AssociationSet Name="FK_Quotes_Companys" Association="StockMarket.DataModel.FK_Quotes_Companys">
             <End Role="Company" EntitySet="Companys" />
+            <End Role="Quote" EntitySet="Quotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Quotes_QuoteTypes" Association="StockMarket.DataModel.FK_Quotes_QuoteTypes">
+            <End Role="QuoteType" EntitySet="QuoteTypes" />
             <End Role="Quote" EntitySet="Quotes" />
           </AssociationSet>
         </EntityContainer>
@@ -161,6 +191,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Open" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="High" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
@@ -169,6 +200,15 @@
           <Property Name="Volume" Type="Int64" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Company" Relationship="StockMarket.DataModel.FK_Quotes_Companys" FromRole="Quote" ToRole="Company" />
+          <NavigationProperty Name="QuoteType" Relationship="StockMarket.DataModel.FK_Quotes_QuoteTypes" FromRole="Quote" ToRole="QuoteType" />
+        </EntityType>
+        <EntityType Name="QuoteType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Quotes" Relationship="StockMarket.DataModel.FK_Quotes_QuoteTypes" FromRole="QuoteType" ToRole="Quote" />
         </EntityType>
         <Association Name="FK_Quotes_Companys">
           <End Type="StockMarket.DataModel.Company" Role="Company" Multiplicity="1" />
@@ -179,6 +219,18 @@
             </Principal>
             <Dependent Role="Quote">
               <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Quotes_QuoteTypes">
+          <End Type="StockMarket.DataModel.QuoteType" Role="QuoteType" Multiplicity="1" />
+          <End Type="StockMarket.DataModel.Quote" Role="Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuoteType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="TypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -250,7 +302,16 @@
                 <ScalarProperty Name="High" ColumnName="High" />
                 <ScalarProperty Name="Open" ColumnName="Open" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuoteTypes">
+            <EntityTypeMapping TypeName="StockMarket.DataModel.QuoteType">
+              <MappingFragment StoreEntitySet="QuoteTypes">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

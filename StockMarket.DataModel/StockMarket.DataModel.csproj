@@ -65,6 +65,9 @@
     <Compile Include="Quote.cs">
       <DependentUpon>SMAContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="QuoteType.cs">
+      <DependentUpon>SMAContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="SMAContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

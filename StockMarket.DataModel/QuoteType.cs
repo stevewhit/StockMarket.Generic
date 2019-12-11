@@ -12,20 +12,18 @@ namespace StockMarket.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Quote
+    public partial class QuoteType
     {
-        public int Id { get; set; }
-        public int CompanyId { get; set; }
-        public int TypeId { get; set; }
-        public System.DateTime Date { get; set; }
-        public decimal Open { get; set; }
-        public decimal High { get; set; }
-        public decimal Low { get; set; }
-        public decimal Close { get; set; }
-        public long Volume { get; set; }
-        public Nullable<System.DateTime> LastModifiedDate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public QuoteType()
+        {
+            this.Quotes = new HashSet<Quote>();
+        }
     
-        public virtual Company Company { get; set; }
-        public virtual QuoteType QuoteType { get; set; }
+        public int Id { get; set; }
+        public string Type { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Quote> Quotes { get; set; }
     }
 }
