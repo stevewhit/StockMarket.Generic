@@ -491,6 +491,30 @@ END
 ELSE
 	PRINT '"SHAK" already exists in the "Companys" table..'
 
+IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='NVDA')
+BEGIN
+	PRINT 'Inserting "NVDA" into "Companys" table..'
 
+	INSERT INTO [dbo].[Companys]
+			   ([Symbol]
+			   ,[RetrieveQuotesFlag]
+			   ,[DownloadDetailsFlag])
+     	VALUES
+              ('NVDA', 1, 1)
+END
+ELSE
+	PRINT '"NVDA" already exists in the "Companys" table..'
 
+IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='WMT')
+BEGIN
+	PRINT 'Inserting "NVDA" into "WMT" table..'
 
+	INSERT INTO [dbo].[Companys]
+			   ([Symbol]
+			   ,[RetrieveQuotesFlag]
+			   ,[DownloadDetailsFlag])
+     	VALUES
+              ('WMT', 1, 1)
+END
+ELSE
+	PRINT '"WMT" already exists in the "Companys" table..'
