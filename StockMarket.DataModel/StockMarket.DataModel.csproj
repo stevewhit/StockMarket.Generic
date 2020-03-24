@@ -101,18 +101,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database Scripts\Creation Scripts\0 - Create Database.sql" />
-    <Content Include="Database Scripts\Creation Scripts\0DEV - Create Development Database.sql" />
-    <Content Include="Database Scripts\Creation Scripts\1 - Security\0 - Create Login User StockMarketDataAdmin.sql" />
-    <Content Include="Database Scripts\Creation Scripts\1 - Security\1 - Create Database User StockMarketDataAdmin.sql" />
-    <Content Include="Database Scripts\Creation Scripts\2 - Tables\1 - Create ApplicationLogs Table.sql" />
-    <Content Include="Database Scripts\Creation Scripts\2 - Tables\2 - Create Companys Table.sql" />
-    <Content Include="Database Scripts\Creation Scripts\2 - Tables\3 - Create Quotes Table.sql" />
-    <Content Include="Database Scripts\Creation Scripts\2 - Tables\3a - Create Quotes Trigger OnInsertOrUpdate.sql" />
-    <Content Include="Database Scripts\Creation Scripts\3 - Stored Procedures\1 - Create ApplicationLogInsert.sql" />
-    <Content Include="Database Scripts\Creation Scripts\3 - Stored Procedures\2 - Create ApplicationLogSelect.sql" />
-    <Content Include="Database Scripts\Creation Scripts\4 - Data Population\1 - Populate Company Table.sql" />
-    <Content Include="Database Scripts\Creation Scripts\4 - Data Population\2 - Populate Quotes Table.sql" />
     <Content Include="SMAContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SMAContext.Context.cs</LastGenOutput>
@@ -127,12 +115,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Database Scripts\Delta Scripts\1 - Security\" />
-    <Folder Include="Database Scripts\Delta Scripts\2 - Tables\" />
-    <Folder Include="Database Scripts\Delta Scripts\3 - Stored Procedures\" />
-    <Folder Include="Database Scripts\Delta Scripts\4 - Data Population\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Framework.Generic\Framework.Generic\Framework.Generic.csproj">
       <Project>{90236ce3-7b97-457a-8bc2-9acaed973488}</Project>
