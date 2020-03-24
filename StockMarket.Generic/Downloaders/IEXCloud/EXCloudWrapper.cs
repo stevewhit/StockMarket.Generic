@@ -17,8 +17,8 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
     [ExcludeFromCodeCoverage]
     public class EXCloudWrapper : IEXCloudWrapper
     {
-        //private const string _baseUrl = "https://cloud.iexapis.com/stable";
-        private const string _baseUrl = "https://sandbox.iexapis.com/stable";
+        private const string _baseUrl = "https://cloud.iexapis.com/stable";
+        //private const string _baseUrlTest = "https://sandbox.iexapis.com/stable";
         private string _token;
         private bool _isDisposed = false;
         private readonly IMapper _mapper;
