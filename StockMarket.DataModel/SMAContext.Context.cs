@@ -27,7 +27,6 @@ namespace StockMarket.DataModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ApplicationLog> ApplicationLogs { get; set; }
         public virtual DbSet<Company> Companys { get; set; }
         public virtual DbSet<Quote> Quotes { get; set; }
         public virtual DbSet<QuoteType> QuoteTypes { get; set; }

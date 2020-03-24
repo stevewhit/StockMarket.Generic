@@ -1,10 +1,13 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using StockMarket.DataModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects
 {
     [ExcludeFromCodeCoverage]
-    public class EXQuote
+    public class EXDayQuote
     {
+        public int QuoteTypeId => (int)QuoteTypeEnum.Day;
+
         public int Id { get; set; }
         public int CompanyId { get; set; }
         public System.DateTime Date { get; set; }

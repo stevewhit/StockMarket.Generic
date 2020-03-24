@@ -4,6 +4,7 @@ using StockMarket.Generic.Downloaders;
 using StockMarket.DataModel.Test.Builders;
 using System.Linq;
 using StockMarket.DataModel.Test.Builders.Objects;
+using Framework.Generic.Utility;
 
 namespace StockMarket.Generic.Test.Builders
 {
@@ -14,7 +15,7 @@ namespace StockMarket.Generic.Test.Builders
         public MockMarketDownloader()
         {
             // Setup all mock methods.
-            SetupDownloadCompanyDetails().SetupDownloadPreviousDayQuote().SetupDownloadQuotesFiveDays().SetupDownloadQuotesOneMonth().SetupDownloadQuotesOneMonth().SetupDownloadQuotesThreeMonths().SetupDownloadQuotesFiveMonths().SetupDownloadQuotesOneYear().SetupDownloadQuotesTwoYears().SetupDownloadQuotesFiveYears().SetupDispose();
+            SetupDownloadCompanyDetails().SetupDownloadPreviousDayQuote().SetupDownloadQuotesFiveDays().SetupDownloadQuotesOneMonth().SetupDownloadQuotesOneMonth().SetupDownloadQuotesThreeMonths().SetupDownloadQuotesFiveMonths().SetupDownloadQuotesOneYear().SetupDownloadQuotesTwoYears().SetupDownloadQuotesFiveYears().SetupDownloadIntradayMinuteQuotes().SetupDispose();
         }
 
         private TestCompany GetSupportedCompany(string tickerSymbol)
@@ -23,6 +24,12 @@ namespace StockMarket.Generic.Test.Builders
             {
                 case "AAPL":
                     return FakeCompaniesBuilder.CreateFakeCompanyAAPL();
+                case "GPRO":
+                    return FakeCompaniesBuilder.CreateFakeCompanyGPRO();
+                case "AMZN":
+                    return FakeCompaniesBuilder.CreateFakeCompanyAMZN();
+                case "GOOG":
+                    return FakeCompaniesBuilder.CreateFakeCompanyGOOG();
                 default:
                     throw new NotImplementedException("No fake data exists yet for this company.");
             }
@@ -45,7 +52,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 1).FirstOrDefault();
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, 1).FirstOrDefault();
                 });
 
             return this;
@@ -57,7 +64,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, 5);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, 5);
                 });
 
             return this;
@@ -69,7 +76,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddMonths(-1)).TotalDays);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, (int)(SystemTime.Now() - SystemTime.Now().AddMonths(-1)).TotalDays);
                 });
 
             return this;
@@ -81,7 +88,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddMonths(-3)).TotalDays);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, (int)(SystemTime.Now() - SystemTime.Now().AddMonths(-3)).TotalDays);
                 });
 
             return this;
@@ -93,7 +100,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddMonths(-5)).TotalDays);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, (int)(SystemTime.Now() - SystemTime.Now().AddMonths(-5)).TotalDays);
                 });
 
             return this;
@@ -105,7 +112,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddYears(-1)).TotalDays);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, (int)(SystemTime.Now() - SystemTime.Now().AddYears(-1)).TotalDays);
                 });
 
             return this;
@@ -117,7 +124,7 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddYears(-2)).TotalDays);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, (int)(SystemTime.Now() - SystemTime.Now().AddYears(-2)).TotalDays);
                 });
 
             return this;
@@ -129,7 +136,19 @@ namespace StockMarket.Generic.Test.Builders
                 .Returns((string tickerSymbol) =>
                 {
                     var validCompany = GetSupportedCompany(tickerSymbol);
-                    return FakeQuotesBuilder.CreateFakeQuotes(null, (int)(DateTime.Now - DateTime.Now.AddYears(-5)).TotalDays);
+                    return FakeQuotesBuilder.CreateFakeDayQuotes(null, (int)(SystemTime.Now() - SystemTime.Now().AddYears(-5)).TotalDays);
+                });
+
+            return this;
+        }
+
+        public MockMarketDownloader SetupDownloadIntradayMinuteQuotes()
+        {
+            Setup(w => w.DownloadIntradayMinuteQuotes(It.IsAny<string>()))
+                .Returns((string tickerSymbol) =>
+                {
+                    var validCompany = GetSupportedCompany(tickerSymbol);
+                    return FakeQuotesBuilder.CreateFakeMinuteQuotes(null, SystemTime.Now().TimeOfDay);
                 });
 
             return this;

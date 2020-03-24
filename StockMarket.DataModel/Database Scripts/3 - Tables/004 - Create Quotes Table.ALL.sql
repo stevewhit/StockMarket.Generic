@@ -12,6 +12,7 @@ BEGIN
 		[Low] [decimal](10, 2) NOT NULL,
 		[Close] [decimal](10, 2) NOT NULL,
 		[Volume] [bigint] NOT NULL,
+		[IsValid] [bit] DEFAULT(1) NOT NULL,
 		[LastModifiedDate] [datetime] NULL,
 	 CONSTRAINT [PK_Quotes] PRIMARY KEY CLUSTERED 
 	(

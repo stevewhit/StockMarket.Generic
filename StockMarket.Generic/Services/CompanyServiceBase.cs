@@ -22,6 +22,13 @@ namespace StockMarket.Generic.Services
         T FindCompany(int id);
 
         /// <summary>
+        /// Finds and returns the company with the matching <paramref name="tickerSymbol"/>. The method is case-insensitive.
+        /// </summary>
+        /// <param name="tickerSymbol">The symbol of the company to return.</param>
+        /// <returns>Returns the company with the matching <paramref name="tickerSymbol"/>.</returns>
+        T FindCompany(string tickerSymbol);
+
+        /// <summary>
         /// Adds the supplied <paramref name="company"/>.
         /// </summary>
         /// <param name="company">The company that is to be added.</param>
@@ -78,6 +85,16 @@ namespace StockMarket.Generic.Services
         public T FindCompany(int id)
         {
             return GetCompanies().FirstOrDefault(c => c.Id == id);
+        }
+
+        /// <summary>
+        /// Finds and returns the company with the matching <paramref name="tickerSymbol"/>. The method is case-insensitive.
+        /// </summary>
+        /// <param name="tickerSymbol">The symbol of the company to return.</param>
+        /// <returns>Returns the company with the matching <paramref name="tickerSymbol"/>.</returns>
+        public T FindCompany(string tickerSymbol)
+        {
+            return GetCompanies().FirstOrDefault(c => c.Symbol.Equals(tickerSymbol, StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>

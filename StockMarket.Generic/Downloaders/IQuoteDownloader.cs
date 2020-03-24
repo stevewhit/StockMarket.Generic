@@ -62,5 +62,12 @@ namespace StockMarket.Generic.Downloaders
         /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
         /// <returns>Returns historical quotes within the last 5 years for the company matching the <paramref name="tickerSymbol"/>.</returns>
         IEnumerable<Q> DownloadQuotesFiveYears(string tickerSymbol);
+
+        /// <summary>
+        /// Downloads and returns intraday minute quotes for the company matching the <paramref name="tickerSymbol"/>.
+        /// </summary>
+        /// <param name="tickerSymbol">The ticker symbol of the company to download the quotes for.</param>
+        /// <returns>Returns intraday minute quotes for the company matching the <paramref name="tickerSymbol"/>.</returns>
+        IEnumerable<Q> DownloadIntradayMinuteQuotes(string tickerSymbol);
     }
 }

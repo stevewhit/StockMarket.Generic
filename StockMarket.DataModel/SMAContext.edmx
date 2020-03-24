@@ -5,20 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StockMarket.DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ApplicationLogs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Thread" Type="nvarchar" MaxLength="255" />
-          <Property Name="Level" Type="nvarchar" MaxLength="50" />
-          <Property Name="Logger" Type="nvarchar" MaxLength="255" />
-          <Property Name="Message" Type="nvarchar(max)" />
-          <Property Name="Exception" Type="nvarchar(max)" />
-          <Property Name="Location" Type="nvarchar" MaxLength="255" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="Companys">
           <Key>
             <PropertyRef Name="Id" />
@@ -52,6 +38,7 @@
           <Property Name="Low" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Close" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Volume" Type="bigint" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="LastModifiedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="QuoteTypes">
@@ -97,7 +84,6 @@
         </Function>
         <Function Name="ApplicationLogSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="StockMarketDataModelStoreContainer">
-          <EntitySet Name="ApplicationLogs" EntityType="Self.ApplicationLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Companys" EntityType="Self.Companys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quotes" EntityType="Self.Quotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuoteTypes" EntityType="Self.QuoteTypes" Schema="dbo" store:Type="Tables" />
@@ -126,7 +112,6 @@
             <Parameter Name="userId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ApplicationLogSelect" ReturnType="Collection(StockMarket.DataModel.ApplicationLogSelect_Result)" />
-          <EntitySet Name="ApplicationLogs" EntityType="StockMarket.DataModel.ApplicationLog" />
           <EntitySet Name="Companys" EntityType="StockMarket.DataModel.Company" />
           <EntitySet Name="Quotes" EntityType="StockMarket.DataModel.Quote" />
           <EntitySet Name="QuoteTypes" EntityType="StockMarket.DataModel.QuoteType" />
@@ -138,7 +123,7 @@
             <End Role="QuoteType" EntitySet="QuoteTypes" />
             <End Role="Quote" EntitySet="Quotes" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="ApplicationLogSelect_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
@@ -150,20 +135,6 @@
           <Property Type="String" Name="Location" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="UserId" Nullable="true" MaxLength="255" />
         </ComplexType>
-        <EntityType Name="ApplicationLog">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Thread" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Logger" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="Id" />
@@ -198,6 +169,7 @@
           <Property Name="Low" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Close" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Volume" Type="Int64" Nullable="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Company" Relationship="StockMarket.DataModel.FK_Quotes_Companys" FromRole="Quote" ToRole="Company" />
           <NavigationProperty Name="QuoteType" Relationship="StockMarket.DataModel.FK_Quotes_QuoteTypes" FromRole="Quote" ToRole="QuoteType" />
@@ -234,7 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -256,21 +228,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ApplicationLogs">
-            <EntityTypeMapping TypeName="StockMarket.DataModel.ApplicationLog">
-              <MappingFragment StoreEntitySet="ApplicationLogs">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Exception" ColumnName="Exception" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Logger" ColumnName="Logger" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Thread" ColumnName="Thread" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Companys">
             <EntityTypeMapping TypeName="StockMarket.DataModel.Company">
               <MappingFragment StoreEntitySet="Companys">
@@ -296,6 +253,7 @@
             <EntityTypeMapping TypeName="StockMarket.DataModel.Quote">
               <MappingFragment StoreEntitySet="Quotes">
                 <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="Close" ColumnName="Close" />
                 <ScalarProperty Name="Low" ColumnName="Low" />

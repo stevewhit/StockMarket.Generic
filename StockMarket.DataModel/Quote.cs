@@ -23,6 +23,7 @@ namespace StockMarket.DataModel
         public decimal Low { get; set; }
         public decimal Close { get; set; }
         public long Volume { get; set; }
+        public bool IsValid { get; set; }
         public Nullable<System.DateTime> LastModifiedDate { get; set; }
     
         public virtual Company Company { get; set; }

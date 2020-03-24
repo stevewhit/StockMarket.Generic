@@ -101,7 +101,7 @@ namespace StockMarket.Generic.Test.Services
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDisposedException))]
-        public void FindCompany_AfterDisposed_ThrowsException()
+        public void FindCompanyById_AfterDisposed_ThrowsException()
         {
             // Arrange
             _service.Dispose();
@@ -111,7 +111,7 @@ namespace StockMarket.Generic.Test.Services
         }
 
         [TestMethod]
-        public void FindCompany_WithValidId_ReturnsCompany()
+        public void FindCompanyById_WithValidId_ReturnsCompany()
         {
             // Arrange
             var id = 123;
@@ -131,7 +131,7 @@ namespace StockMarket.Generic.Test.Services
         }
 
         [TestMethod]
-        public void FindCompany_WithInvalidId_ReturnsNull()
+        public void FindCompanyById_WithInvalidId_ReturnsNull()
         {
             // Arrange
             var companyToAdd = new TestCompany()
@@ -148,6 +148,89 @@ namespace StockMarket.Generic.Test.Services
             Assert.IsNull(company);
         }
 
+        #endregion
+        #region Testing T FindCompany(string symbol)
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDisposedException))]
+        public void FindCompanyBySymbol_AfterDisposed_ThrowsException()
+        {
+            // Arrange
+            _service.Dispose();
+
+            // Act
+            var company = _service.FindCompany("Doesn't Matter");
+        }
+
+        [TestMethod]
+        public void FindCompanyBySymbol_WithNullSymbol_ReturnsNull()
+        {
+            // Act
+            var company = _service.FindCompany(null);
+
+            // Assert
+            Assert.IsNull(company);
+        }
+
+        [TestMethod]
+        public void FindCompanyBySymbol_WithInvalidSymbol_ReturnsNull()
+        {
+            // Arrange
+            var symbol = "AAPL";
+            var companyToAdd = new TestCompany()
+            {
+                Symbol = symbol
+            };
+
+            _repository.Add(companyToAdd);
+
+            // Act
+            var company = _service.FindCompany("GPRO");
+
+            // Assert
+            Assert.IsNull(company);
+        }
+
+        [TestMethod]
+        public void FindCompanyBySymbol_WithValidSymbol_ReturnsCompany()
+        {
+            // Arrange
+            var symbol = "AAPL";
+            var companyToAdd = new TestCompany()
+            {
+                Symbol = symbol
+            };
+
+            _repository.Add(companyToAdd);
+
+            // Act
+            var company = _service.FindCompany(symbol);
+
+            // Assert
+            Assert.IsNotNull(company);
+            Assert.IsTrue(company == companyToAdd);
+        }
+
+        [TestMethod]
+        public void FindCompanyBySymbol_WithValidSymbol_ReturnsCompany2()
+        {
+            // Arrange
+            var symbol = "AAPL";
+            var companyToAdd = new TestCompany()
+            {
+                Symbol = symbol
+            };
+
+            _repository.Add(companyToAdd);
+
+            // Act
+            var company = _service.FindCompany("aApL");
+
+            // Assert
+            Assert.IsNotNull(company);
+            Assert.IsTrue(company == companyToAdd);
+        }
+        
         #endregion
         #region Testing void Add(T company)
 

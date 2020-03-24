@@ -5,10 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="052cb5c21b4848cc84e453cb3c83b890" Name="Diagram1">
-        <EntityTypeShape EntityType="StockMarket.DataModel.ApplicationLog" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="StockMarket.DataModel.Company" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="StockMarket.DataModel.Quote" Width="1.5" PointX="3" PointY="1.375" />
-        <EntityTypeShape EntityType="StockMarket.DataModel.QuoteType" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="StockMarket.DataModel.Company" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="StockMarket.DataModel.Quote" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="StockMarket.DataModel.QuoteType" Width="1.5" PointX="0.75" PointY="2" />
         <AssociationConnector Association="StockMarket.DataModel.FK_Quotes_Companys" />
         <AssociationConnector Association="StockMarket.DataModel.FK_Quotes_QuoteTypes" />
       </Diagram>
