@@ -5,9 +5,11 @@ using StockMarket.DataModel.Test.Builders;
 using System.Linq;
 using StockMarket.DataModel.Test.Builders.Objects;
 using Framework.Generic.Utility;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StockMarket.Generic.Test.Builders
 {
+    [ExcludeFromCodeCoverage]
     public class MockMarketDownloader : Mock<IMarketDownloader<TestCompany, TestQuote>>
     {
         public bool IsDisposed { get; private set; } = false;
