@@ -9,6 +9,7 @@ using StockMarket.DataModel.Test.Builders.Objects;
 
 namespace StockMarket.Generic.Test.Downloaders
 {
+
     /// <summary>
     /// Tests of mock interface provided because minimal verification is needed to test the mock methods are
     /// returning properly.
@@ -244,9 +245,9 @@ namespace StockMarket.Generic.Test.Downloaders
 
             // Assert
             Assert.IsNotNull(downloadedQuotes);
-            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now - DateTime.Now.AddYears(-5)).TotalDays);
+            Assert.IsTrue(downloadedQuotes.Count() == (int)(DateTime.Now.Date - DateTime.Now.AddYears(-5).Date).TotalDays);
             Assert.IsTrue(downloadedQuotes.FirstOrDefault()?.Id == 1);
-            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now - DateTime.Now.AddYears(-5)).TotalDays);
+            Assert.IsTrue(downloadedQuotes.LastOrDefault()?.Id == (int)(DateTime.Now.Date - DateTime.Now.AddYears(-5).Date).TotalDays);
         }
 
         #endregion
