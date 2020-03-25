@@ -55,9 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationLogSelect_Result.cs">
-      <DependentUpon>SMAContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Company.cs">
       <DependentUpon>SMAContext.tt</DependentUpon>
     </Compile>

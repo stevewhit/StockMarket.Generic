@@ -12,22 +12,28 @@ BEGIN
 		[Low] [decimal](10, 2) NOT NULL,
 		[Close] [decimal](10, 2) NOT NULL,
 		[Volume] [bigint] NOT NULL,
-		[IsValid] [bit] DEFAULT(1) NOT NULL,
+		[IsValid] [bit] NOT NULL,
 		[LastModifiedDate] [datetime] NULL,
 	 CONSTRAINT [PK_Quotes] PRIMARY KEY CLUSTERED 
 	(
 		[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+	 CONSTRAINT [U_Date] UNIQUE NONCLUSTERED 
+	(
+		[Date] ASC
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY]
-	
+
+	ALTER TABLE [dbo].[Quotes] ADD  DEFAULT ((1)) FOR [IsValid]
+
 	ALTER TABLE [dbo].[Quotes]  WITH CHECK ADD  CONSTRAINT [FK_Quotes_Companys] FOREIGN KEY([CompanyId])
 	REFERENCES [dbo].[Companys] ([Id])
-	
+
 	ALTER TABLE [dbo].[Quotes] CHECK CONSTRAINT [FK_Quotes_Companys]
-	
+
 	ALTER TABLE [dbo].[Quotes]  WITH CHECK ADD  CONSTRAINT [FK_Quotes_QuoteTypes] FOREIGN KEY([TypeId])
 	REFERENCES [dbo].[QuoteTypes] ([Id])
-	
+
 	ALTER TABLE [dbo].[Quotes] CHECK CONSTRAINT [FK_Quotes_QuoteTypes]
 END
 ELSE
