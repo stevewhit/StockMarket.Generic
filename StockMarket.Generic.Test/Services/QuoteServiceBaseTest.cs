@@ -300,6 +300,106 @@ namespace StockMarket.Generic.Test.Services
         }
 
         #endregion
+        #region Testing UpdateRange(IEnumerable<T> quotes)
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDisposedException))]
+        public void UpdateRange_AfterDisposed_ThrowsException()
+        {
+            // Arrange
+            var quotesToUpdate = new List<TestQuote>
+            {
+                new TestQuote()
+            };
+
+            _service.Dispose();
+
+            // Act
+            _service.UpdateRange(quotesToUpdate);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void UpdateRange_WithNullQuotes_ThrowsException()
+        {
+            // Act
+            _service.UpdateRange(quotes: null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void UpdateRange_WithInvalidQuote_ThrowsException()
+        {
+            // Arrange
+            var quote1 = new TestQuote() { Id = 111 };
+            var quote2 = new TestQuote() { Id = 222 };
+            var quote3 = new TestQuote() { Id = 333 };
+            var quote4 = new TestQuote() { Id = 444 };
+
+            var quotesToAdd = new List<TestQuote>
+            {
+                quote1, quote2, quote3, quote4
+            };
+
+            _service.AddRange(quotesToAdd);
+
+            quote1.Close = 999;
+            quote2.Close = 888;
+            quote3.Close = 777;
+            quote4.Close = 666;
+            
+            // Adding non-existing quote to update.
+            var updatedQuotes = new List<TestQuote>
+            {
+                quote1, quote2, quote3, quote4, new TestQuote(){Id = 555}
+            };
+
+            // Act
+            _service.UpdateRange(updatedQuotes);
+        }
+
+        [TestMethod]
+        public void UpdateRange_ContainingValidQuotes_UpdatesQuotes()
+        {
+            // Arrange
+            var quote1 = new TestQuote() { Id = 111 };
+            var quote2 = new TestQuote() { Id = 222 };
+            var quote3 = new TestQuote() { Id = 333 };
+            var quote4 = new TestQuote() { Id = 444 };
+
+            var quotesToAdd = new List<TestQuote>
+            {
+                quote1, quote2, quote3, quote4
+            };
+
+            _service.AddRange(quotesToAdd);
+
+            quote1.Close = 999;
+            quote2.Close = 888;
+            quote3.Close = 777;
+            quote4.Close = 666;
+
+            var updatedQuotes = new List<TestQuote>
+            {
+                quote1, quote2, quote3, quote4
+            };
+
+            // Act
+            _service.UpdateRange(updatedQuotes);
+
+            var updatedQuote1 = _service.FindQuote(quote1.Id);
+            var updatedQuote2 = _service.FindQuote(quote2.Id);
+            var updatedQuote3 = _service.FindQuote(quote3.Id);
+            var updatedQuote4 = _service.FindQuote(quote4.Id);
+
+            // Assert
+            Assert.IsTrue(updatedQuote1.Close == 999);
+            Assert.IsTrue(updatedQuote2.Close == 888);
+            Assert.IsTrue(updatedQuote3.Close == 777);
+            Assert.IsTrue(updatedQuote4.Close == 666);
+        }
+
+        #endregion
         #region Testing void Delete(int id)
 
         [TestMethod]

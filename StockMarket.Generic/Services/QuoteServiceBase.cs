@@ -41,6 +41,12 @@ namespace StockMarket.Generic.Services
         void Update(T quote);
 
         /// <summary>
+        /// Updates the supplied <paramref name="quotes"/> in the repository.
+        /// </summary>
+        /// <param name="quotes">The quotes that are to be updated.</param>
+        void UpdateRange(IEnumerable<T> quotes);
+
+        /// <summary>
         /// Finds and deletes an existing quote in the repository by using its <paramref name="id"/>.
         /// </summary>
         /// <param name="id">The id of quote to be deleted.</param>
@@ -132,6 +138,26 @@ namespace StockMarket.Generic.Services
                 throw new ArgumentNullException("quote");
             
             _repository.Update(quote);
+            _repository.SaveChanges();
+        }
+
+        /// <summary>
+        /// Updates the supplied <paramref name="quotes"/> in the repository.
+        /// </summary>
+        /// <param name="quotes">The quotes that are to be updated.</param>
+        public void UpdateRange(IEnumerable<T> quotes)
+        {
+            if (_isDisposed)
+                throw new ObjectDisposedException("QuoteService", "The service has been disposed.");
+
+            if (quotes == null)
+                throw new ArgumentNullException("quotes");
+
+            foreach (var quote in quotes)
+            {
+                _repository.Update(quote);
+            }
+
             _repository.SaveChanges();
         }
 

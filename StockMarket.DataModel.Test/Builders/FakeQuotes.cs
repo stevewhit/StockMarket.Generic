@@ -9,6 +9,8 @@ namespace StockMarket.DataModel.Test.Builders
     [ExcludeFromCodeCoverage]
     public static class FakeQuotesBuilder
     {
+        public static bool CreatesValidQuotes { get; set; } = true;
+
         public static IEnumerable<TestQuote> CreateFakeDayQuotes(TestCompany company, int numDays, int numDaysSkipped)
         {
             for (int i = numDaysSkipped+1; i <= numDays+numDaysSkipped; i++)
@@ -25,7 +27,8 @@ namespace StockMarket.DataModel.Test.Builders
                     Open = NumberUtils.GenerateRandomNumber(1, 200),
                     Volume = NumberUtils.GenerateRandomNumber(1, 1000000),
                     QuoteType = QuoteTypeEnum.Day,
-                    TypeId = (int)QuoteTypeEnum.Day
+                    TypeId = (int)QuoteTypeEnum.Day,
+                    IsValid = CreatesValidQuotes
                 };
             }
         }
@@ -57,7 +60,8 @@ namespace StockMarket.DataModel.Test.Builders
                     Open = NumberUtils.GenerateRandomNumber(1, 200),
                     Volume = NumberUtils.GenerateRandomNumber(1, 1000000),
                     QuoteType = QuoteTypeEnum.Minute,
-                    TypeId = (int)QuoteTypeEnum.Minute
+                    TypeId = (int)QuoteTypeEnum.Minute,
+                    IsValid = CreatesValidQuotes
                 };
             }
         }
