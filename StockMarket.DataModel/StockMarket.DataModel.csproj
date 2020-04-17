@@ -87,7 +87,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="secretConnectionStrings.config" />
     <None Include="Database Scripts\Build-Database.bat" />
     <EntityDeploy Include="SMAContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

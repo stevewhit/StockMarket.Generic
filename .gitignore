@@ -1,6 +1,5 @@
 # Hidden Files
 secret*.config
-*000 - Create Login User StockMarketDataAdmin.CONFIG.ALL.sql
 *Build-Database.bat
 
 ## Ignore Visual Studio temporary files, build results, and
