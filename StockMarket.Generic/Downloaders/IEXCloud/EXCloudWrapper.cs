@@ -187,7 +187,14 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/company?token={_token}";
 
-            return GetJsonFromUrl<EXCompany>(url);
+            try
+            {
+                return GetJsonFromUrl<EXCompany>(url);
+            }
+            catch (WebException ex)
+            {
+                throw new WebException($"An error occured downloading company details for '{tickerSymbol}' from {url}.", ex);
+            }
         }
 
         /// <summary>
@@ -203,7 +210,14 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/previous?token={_token}";
 
-            return GetJsonFromUrl<EXDayQuote>(url);
+            try
+            {
+                return GetJsonFromUrl<EXDayQuote>(url);
+            }
+            catch (WebException ex)
+            {
+                throw new WebException($"An error occured downloading previous day quote for '{tickerSymbol}' from {url}.", ex);
+            }
         }
 
         /// <summary>
@@ -288,7 +302,14 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/intraday-prices?token={_token}";
 
-            return GetJsonFromUrl<IEnumerable<EXIntradayQuote>>(url);
+            try
+            {
+                return GetJsonFromUrl<IEnumerable<EXIntradayQuote>>(url);
+            }
+            catch(WebException ex)
+            {
+                throw new WebException($"An error occured downloading minute quotes for '{tickerSymbol}' from {url}.", ex);
+            }
         }
 
         /// <summary>
@@ -304,7 +325,14 @@ namespace StockMarket.Generic.Downloaders.IEXCloud
 
             var url = $"{_baseUrl}/stock/{tickerSymbol}/chart/{quoteRange}?token={_token}";
 
-            return GetJsonFromUrl<IEnumerable<EXDayQuote>>(url);
+            try
+            {
+                return GetJsonFromUrl<IEnumerable<EXDayQuote>>(url);
+            }
+            catch (WebException ex)
+            {
+                throw new WebException($"An error occured downloading day quotes for '{tickerSymbol}' from {url}.", ex);
+            }
         }
         
         /// <summary>
