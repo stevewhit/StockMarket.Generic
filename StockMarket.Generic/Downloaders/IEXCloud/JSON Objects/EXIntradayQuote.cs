@@ -6,7 +6,7 @@ namespace StockMarket.Generic.Downloaders.IEXCloud.JSON_Objects
     [ExcludeFromCodeCoverage]
     public class EXIntradayQuote
     {
-        public int QuoteTypeId => (int)QuoteTypeEnum.Minute;
+        public int QuoteTypeId => (int)QuoteTypeEnum.OneMinute;
 
         public int Id { get; set; }
         public int CompanyId { get; set; }

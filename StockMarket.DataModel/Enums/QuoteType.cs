@@ -4,10 +4,14 @@ namespace StockMarket.DataModel
 {
     public enum QuoteTypeEnum
     {
-        Second = 1,
-        Minute = 2,
-        Hour = 3,
-        Day = 4
+        OneMinute = 1,
+        FiveMinute = 2,
+        FifteenMinute = 3,
+        ThirtyMinute = 4,
+        OneHour = 5,
+        Day = 6,
+        Week = 7,
+        Month = 8
     }
 
     public partial class QuoteType

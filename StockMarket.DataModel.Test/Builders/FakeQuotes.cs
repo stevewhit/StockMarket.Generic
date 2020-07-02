@@ -59,8 +59,8 @@ namespace StockMarket.DataModel.Test.Builders
                     Low = NumberUtils.GenerateRandomNumber(1, 200),
                     Open = NumberUtils.GenerateRandomNumber(1, 200),
                     Volume = NumberUtils.GenerateRandomNumber(1, 1000000),
-                    QuoteType = QuoteTypeEnum.Minute,
-                    TypeId = (int)QuoteTypeEnum.Minute,
+                    QuoteType = QuoteTypeEnum.OneMinute,
+                    TypeId = (int)QuoteTypeEnum.OneMinute,
                     IsValid = CreatesValidQuotes
                 };
             }
