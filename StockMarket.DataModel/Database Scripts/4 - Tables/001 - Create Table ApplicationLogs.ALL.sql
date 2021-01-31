@@ -17,8 +17,13 @@ BEGIN
 		[Id] ASC
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+	
+	IF NOT EXISTS (SELECT * FROM sys.tables WHERE NAME = 'ApplicationLogs')	
+		PRINT 'ERROR: Creating table "ApplicationLogs"..'
+	ELSE
+		PRINT 'SUCCESS: Created table "ApplicationLogs"..'
 END
 ELSE
-	PRINT 'The table "ApplicationLogs" already exists.'
+	PRINT 'SKIP: The table "ApplicationLogs" already exists.'
 
 

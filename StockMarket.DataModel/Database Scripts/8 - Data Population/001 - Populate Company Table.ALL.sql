@@ -1,31 +1,3 @@
-IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='ROKU')
-BEGIN
-	PRINT 'Inserting "ROKU" into "Companys" table..'
-
-	INSERT INTO [dbo].[Companys]
-			   ([Symbol]
-			   ,[RetrieveQuotesFlag]
-			   ,[DownloadDetailsFlag])
-     	VALUES
-              ('ROKU', 1, 1)
-END
-ELSE
-	PRINT '"ROKU" already exists in the "Companys" table..'
-	
-IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='TSLA')
-BEGIN
-	PRINT 'Inserting "TSLA" into "Companys" table..'
-
-	INSERT INTO [dbo].[Companys]
-			   ([Symbol]
-			   ,[RetrieveQuotesFlag]
-			   ,[DownloadDetailsFlag])
-     	VALUES
-              ('TSLA', 1, 1)
-END
-ELSE
-	PRINT '"TSLA" already exists in the "Companys" table..'
-
 IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='AAPL')
 BEGIN
 	PRINT 'Inserting "AAPL" into "Companys" table..'
@@ -39,6 +11,34 @@ BEGIN
 END
 ELSE
 	PRINT '"AAPL" already exists in the "Companys" table..'
+	
+-- IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='ROKU')
+-- BEGIN
+	-- PRINT 'Inserting "ROKU" into "Companys" table..'
+
+	-- INSERT INTO [dbo].[Companys]
+			   -- ([Symbol]
+			   -- ,[RetrieveQuotesFlag]
+			   -- ,[DownloadDetailsFlag])
+     	-- VALUES
+              -- ('ROKU', 1, 1)
+-- END
+-- ELSE
+	-- PRINT '"ROKU" already exists in the "Companys" table..'
+	
+-- IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='TSLA')
+-- BEGIN
+	-- PRINT 'Inserting "TSLA" into "Companys" table..'
+
+	-- INSERT INTO [dbo].[Companys]
+			   -- ([Symbol]
+			   -- ,[RetrieveQuotesFlag]
+			   -- ,[DownloadDetailsFlag])
+     	-- VALUES
+              -- ('TSLA', 1, 1)
+-- END
+-- ELSE
+	-- PRINT '"TSLA" already exists in the "Companys" table..'
 
 -- IF NOT EXISTS (SELECT * FROM Companys WHERE Symbol='GPRO')
 -- BEGIN

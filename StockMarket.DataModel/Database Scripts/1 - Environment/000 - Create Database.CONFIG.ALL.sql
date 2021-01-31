@@ -6,10 +6,10 @@ BEGIN
 
 	IF EXISTS (SELECT * FROM master.dbo.sysdatabases WHERE [name] = 'StockMarketData')
 	BEGIN
-		PRINT 'Successfully created "StockMarketData" database..'
+		PRINT 'SUCCESS: Created "StockMarketData" database..'
 	END
 	ELSE
-		PRINT 'ERROR creating "StockMarketData" database..'
+		PRINT 'ERROR: Creating "StockMarketData" database..'
 END
 ELSE	
-	PRINT 'Successfully found the StockMarketData database..'
+	PRINT 'SKIP: "StockMarketData" database already exists..'

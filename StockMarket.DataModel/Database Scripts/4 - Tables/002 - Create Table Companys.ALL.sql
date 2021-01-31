@@ -23,8 +23,13 @@ BEGIN
 		[Id] ASC
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY]
+	
+	IF NOT EXISTS (SELECT * FROM sys.tables WHERE NAME = 'Companys')	
+		PRINT 'ERROR: Creating table "Companys"..'
+	ELSE
+		PRINT 'SUCCESS: Created table "Companys"..'
 END
 ELSE
-	PRINT 'The table "Companys" already exists.'
+	PRINT 'SKIP: The table "Companys" already exists.'
 
 
