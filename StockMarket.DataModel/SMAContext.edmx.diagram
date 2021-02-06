@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="StockMarket.DataModel.QuoteType" Width="1.5" PointX="0.75" PointY="7.25" />
         <AssociationConnector Association="StockMarket.DataModel.FK_Quotes_Companys" />
         <AssociationConnector Association="StockMarket.DataModel.FK_Quotes_QuoteTypes" />
+        <EntityTypeShape EntityType="StockMarket.DataModel.IntradayQuote" Width="1.5" PointX="3" PointY="5.875" />
+        <AssociationConnector Association="StockMarket.DataModel.FK_IntradayQuotes_Companys" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

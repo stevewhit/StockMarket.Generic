@@ -19,26 +19,7 @@ BEGIN
 	SET NOCOUNT ON;
 	UPDATE [dbo].[Quotes] SET LastModifiedDate=SYSDATETIME()
 	FROM dbo.Quotes INNER JOIN inserted
-		ON dbo.Quotes.Id = inserted.Id;
-
-	DECLARE @utcEpochMs BIGINT;
-	SELECT @utcEpochMs = inserted.UTCEpochMs FROM inserted
-
-	-- Calculate UTCDateTime field
-	DECLARE @utc_dt DATETIME;
-	EXEC @utc_dt = dbo.fn_GetDateTimeFromEpochMs @utcEpochMs
-
-	UPDATE [dbo].[Quotes] SET UTCDateTime=@utc_dt
-	FROM dbo.Quotes INNER JOIN inserted
-		ON dbo.Quotes.Id = inserted.Id;
-				
-	-- Calculate LocalDateTime field
-	DECLARE @local_dt DATETIME;
-	EXEC @local_dt = dbo.fn_GetLocalDateTimeFromUTC @utc_dt
-
-	UPDATE [dbo].[Quotes] SET LocalDateTime=@local_dt
-	FROM dbo.Quotes INNER JOIN inserted
-		ON dbo.Quotes.Id = inserted.Id;
+	 ON dbo.Quotes.Id = inserted.Id;
 END
 GO
 

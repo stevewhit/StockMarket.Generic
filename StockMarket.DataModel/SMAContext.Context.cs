@@ -28,5 +28,6 @@ namespace StockMarket.DataModel
         public virtual DbSet<Company> Companys { get; set; }
         public virtual DbSet<Quote> Quotes { get; set; }
         public virtual DbSet<QuoteType> QuoteTypes { get; set; }
+        public virtual DbSet<IntradayQuote> IntradayQuotes { get; set; }
     }
 }

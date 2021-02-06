@@ -25,6 +25,18 @@
           <Property Name="RetrieveQuotesFlag" Type="bit" Nullable="false" />
           <Property Name="DownloadDetailsFlag" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="IntradayQuotes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="UTCEpochMs" Type="bigint" Nullable="false" />
+          <Property Name="UTCDateTime" Type="datetime" />
+          <Property Name="LocalDateTime" Type="datetime" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Quotes">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,6 +60,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <Association Name="FK_IntradayQuotes_Companys">
+          <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
+          <End Role="IntradayQuotes" Type="Self.IntradayQuotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntradayQuotes">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Quotes_Companys">
           <End Role="Companys" Type="Self.Companys" Multiplicity="1" />
           <End Role="Quotes" Type="Self.Quotes" Multiplicity="*" />
@@ -74,8 +98,13 @@
         </Association>
         <EntityContainer Name="StockMarketDataModelStoreContainer">
           <EntitySet Name="Companys" EntityType="Self.Companys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IntradayQuotes" EntityType="Self.IntradayQuotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quotes" EntityType="Self.Quotes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuoteTypes" EntityType="Self.QuoteTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IntradayQuotes_Companys" Association="Self.FK_IntradayQuotes_Companys">
+            <End Role="Companys" EntitySet="Companys" />
+            <End Role="IntradayQuotes" EntitySet="IntradayQuotes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Quotes_Companys" Association="Self.FK_Quotes_Companys">
             <End Role="Companys" EntitySet="Companys" />
             <End Role="Quotes" EntitySet="Quotes" />
@@ -101,6 +130,11 @@
             <End Role="QuoteType" EntitySet="QuoteTypes" />
             <End Role="Quote" EntitySet="Quotes" />
           </AssociationSet>
+          <EntitySet Name="IntradayQuotes" EntityType="StockMarket.DataModel.IntradayQuote" />
+          <AssociationSet Name="FK_IntradayQuotes_Companys" Association="StockMarket.DataModel.FK_IntradayQuotes_Companys">
+            <End Role="Company" EntitySet="Companys" />
+            <End Role="IntradayQuote" EntitySet="IntradayQuotes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -122,6 +156,7 @@
           <Property Name="RetrieveQuotesFlag" Type="Boolean" Nullable="false" />
           <Property Name="DownloadDetailsFlag" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Quotes" Relationship="StockMarket.DataModel.FK_Quotes_Companys" FromRole="Company" ToRole="Quote" />
+          <NavigationProperty Name="IntradayQuotes" Relationship="StockMarket.DataModel.FK_IntradayQuotes_Companys" FromRole="Company" ToRole="IntradayQuote" />
         </EntityType>
         <EntityType Name="Quote">
           <Key>
@@ -173,6 +208,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="IntradayQuote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="UTCEpochMs" Type="Int64" Nullable="false" />
+          <Property Name="UTCDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LocalDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="StockMarket.DataModel.FK_IntradayQuotes_Companys" FromRole="IntradayQuote" ToRole="Company" />
+        </EntityType>
+        <Association Name="FK_IntradayQuotes_Companys">
+          <End Type="StockMarket.DataModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="StockMarket.DataModel.IntradayQuote" Role="IntradayQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IntradayQuote">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -221,6 +281,19 @@
             <EntityTypeMapping TypeName="StockMarket.DataModel.QuoteType">
               <MappingFragment StoreEntitySet="QuoteTypes">
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IntradayQuotes">
+            <EntityTypeMapping TypeName="StockMarket.DataModel.IntradayQuote">
+              <MappingFragment StoreEntitySet="IntradayQuotes">
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="LocalDateTime" ColumnName="LocalDateTime" />
+                <ScalarProperty Name="UTCDateTime" ColumnName="UTCDateTime" />
+                <ScalarProperty Name="UTCEpochMs" ColumnName="UTCEpochMs" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

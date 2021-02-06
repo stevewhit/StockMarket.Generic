@@ -18,6 +18,7 @@ namespace StockMarket.DataModel
         public Company()
         {
             this.Quotes = new HashSet<Quote>();
+            this.IntradayQuotes = new HashSet<IntradayQuote>();
         }
     
         public int Id { get; set; }
@@ -38,5 +39,7 @@ namespace StockMarket.DataModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Quote> Quotes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<IntradayQuote> IntradayQuotes { get; set; }
     }
 }
